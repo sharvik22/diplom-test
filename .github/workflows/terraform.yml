@@ -13,62 +13,57 @@ jobs:
     environment: production
 
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v4
+
+      - name: Install Yandex Cloud CLI
+        run: |
+          mkdir -p $HOME/yc-cli
+          curl -sSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh -o install-yc.sh
+          chmod +x install-yc.sh
+          ./install-yc.sh -n -i $HOME/yc-cli
+          echo "$HOME/yc-cli/bin" >> $GITHUB_PATH
+          $HOME/yc-cli/bin/yc --version
 
       - name: Setup Terraform
         uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: 1.7.0
 
-      - name: Install Yandex Cloud CLI
+      - name: Configure AWS credentials
         run: |
-          # Создаем директорию для бинарника
-          mkdir -p ~/yc-cli
+          mkdir -p $HOME/.aws
+          cat << EOF > $HOME/.aws/credentials
+          [default]
+          aws_access_key_id=${{ secrets.YC_S3_ACCESS_KEY }}
+          aws_secret_access_key=${{ secrets.YC_S3_SECRET_KEY }}
+          EOF
           
-          # Скачиваем и распаковываем yc
-          curl -sSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh -o install-yc.sh
-          chmod +x install-yc.sh
-          ./install-yc.sh -n -i ~/yc-cli
-          
-          # Добавляем в PATH
-          echo "$HOME/yc-cli/bin" >> $GITHUB_PATH
-          
-          # Проверяем установку
-          ~/yc-cli/bin/yc --version
-
-      - name: Configure AWS CLI for Yandex Cloud S3
-        run: |
-          mkdir -p ~/.aws
-          echo "[default]" > ~/.aws/credentials
-          echo "aws_access_key_id=${{ secrets.YC_S3_ACCESS_KEY }}" >> ~/.aws/credentials
-          echo "aws_secret_access_key=${{ secrets.YC_S3_SECRET_KEY }}" >> ~/.aws/credentials
-          echo "[default]" > ~/.aws/config
-          echo "region=ru-central1" >> ~/.aws/config
-          echo "endpoint_url=https://storage.yandexcloud.net" >> ~/.aws/config
+          cat << EOF > $HOME/.aws/config
+          [default]
+          region=ru-central1
+          endpoint_url=https://storage.yandexcloud.net
+          EOF
 
       - name: Configure YC CLI
         env:
           YC_SERVICE_ACCOUNT_KEY: ${{ secrets.YC_SERVICE_ACCOUNT_KEY }}
-          TF_VAR_cloud_id: ${{ secrets.TF_VAR_cloud_id }}
-          TF_VAR_folder_id: ${{ secrets.TF_VAR_folder_id }}
         run: |
           echo "$YC_SERVICE_ACCOUNT_KEY" > key.json
-          ~/yc-cli/bin/yc config set service-account-key key.json
-          ~/yc-cli/bin/yc config set cloud-id $TF_VAR_cloud_id
-          ~/yc-cli/bin/yc config set folder-id $TF_VAR_folder_id
-          ~/yc-cli/bin/yc config list
+          $HOME/yc-cli/bin/yc config set service-account-key key.json
+          $HOME/yc-cli/bin/yc config set cloud-id ${{ secrets.TF_VAR_cloud_id }}
+          $HOME/yc-cli/bin/yc config set folder-id ${{ secrets.TF_VAR_folder_id }}
+          $HOME/yc-cli/bin/yc config list
 
       - name: Terraform Init
         run: terraform init -backend-config="bucket=${{ secrets.YC_S3_BUCKET_NAME }}"
 
-      - name: Terraform Format
+      - name: Terraform Format Check
         run: terraform fmt -check
 
       - name: Terraform Plan
         run: terraform plan -input=false
-        continue-on-error: true
 
       - name: Terraform Apply
         if: github.ref == 'refs/heads/main'
-       
+        run: terraform apply -auto-approve -input=false
