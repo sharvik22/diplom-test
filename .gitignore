@@ -1,0 +1,104 @@
+# ========== Terraform ==========
+**/.terraform/
+*.tfstate
+*.tfstate.*
+*.tfstate.backup
+*.lock.hcl
+.terraform.lock.hcl
+terraform.tfvars
+*.tfvars
+override.tf
+override.tf.json
+terraform.rc
+/ssh-bastion.conf
+contrib/terraform/aws/credentials.tfvars
+
+# ========== Vagrant ==========
+.vagrant/
+vagrant/
+**/vagrant_ansible_inventory
+
+# ========== Ansible ==========
+*.retry
+inventory/*
+!inventory/local
+!inventory/sample
+inventory/*/artifacts/
+roles/**/molecule/**/__pycache__/
+ansible_collections/
+kubernetes_sigs-kubespray*tar.gz
+
+# ========== IDE и редакторы ==========
+.idea/
+*.iml
+.vscode/
+**/*.sw[pon]
+*~
+.DS_Store
+
+# ========== Python ==========
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+env/
+build/
+dist/
+downloads/
+eggs/
+.eggs/
+parts/
+sdist/
+var/
+*.egg-info/
+.installed.cfg
+*.egg
+*.manifest
+*.spec
+pip-log.txt
+pip-delete-this-directory.txt
+.tox/
+.cache
+.coverage
+.coverage.*
+nosetests.xml
+coverage.xml
+*,cover
+.hypothesis/
+instance/
+.webassets-cache
+.scrapy
+docs/_build/
+target/
+.ipynb_checkpoints
+.python-version
+venv/
+ENV/
+
+# ========== Временные файлы ==========
+temp/
+tmp.md
+scripts/tmp/
+*.bak
+*.log
+*.tmp
+*.temp
+*.pid
+*.pid.lock
+Thumbs.db
+
+# ========== Специфичные файлы ==========
+contrib/offline/offline-files
+contrib/offline/offline-files.tar.gz
+plugins/mitogen
+credentials/
+develop-eggs/
+.local_settings.py
+.mo
+.pot
+
+# ========== Дополнительные исключения ==========
+# Файлы, которые должны быть в репозитории несмотря на шаблоны выше
+!.gitattributes
+!.gitkeep
+!README.md
