@@ -36,6 +36,8 @@ jobs:
           YC_SERVICE_ACCOUNT_KEY: ${{ secrets.YC_SERVICE_ACCOUNT_KEY }}
         run: |
           echo "$YC_SERVICE_ACCOUNT_KEY" > key.json
+          curl -sSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
+          source ~/.bashrc
           yc config set service-account-key key.json
           yc config set cloud-id ${{ secrets.TF_VAR_cloud_id }}
           yc config set folder-id ${{ secrets.TF_VAR_folder_id }}
