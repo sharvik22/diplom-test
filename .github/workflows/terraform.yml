@@ -10,7 +10,9 @@ jobs:
   terraform:
     name: Terraform Plan/Apply
     runs-on: ubuntu-latest
-    environment: production
+    container:
+      image: cr.yandex/yc/yandex-cloud-cli:latest
+      options: --entrypoint /bin/bash
 
     steps:
       - name: Checkout code
@@ -34,13 +36,14 @@ jobs:
       - name: Configure YC CLI
         env:
           YC_SERVICE_ACCOUNT_KEY: ${{ secrets.YC_SERVICE_ACCOUNT_KEY }}
+          TF_VAR_cloud_id: ${{ secrets.TF_VAR_cloud_id }}
+          TF_VAR_folder_id: ${{ secrets.TF_VAR_folder_id }}
         run: |
           echo "$YC_SERVICE_ACCOUNT_KEY" > key.json
-          curl -sSL https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
-          echo "$HOME/yandex-cloud/bin" >> $GITHUB_PATH
           yc config set service-account-key key.json
-          yc config set cloud-id ${{ secrets.TF_VAR_cloud_id }}
-          yc config set folder-id ${{ secrets.TF_VAR_folder_id }}
+          yc config set cloud-id $TF_VAR_cloud_id
+          yc config set folder-id $TF_VAR_folder_id
+          yc config list
 
       - name: Terraform Init
         run: terraform init -backend-config="bucket=${{ secrets.YC_S3_BUCKET_NAME }}"
