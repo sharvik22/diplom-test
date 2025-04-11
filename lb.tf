@@ -18,7 +18,7 @@ resource "yandex_lb_network_load_balancer" "k8s_lb" {
   listener {
     name        = "nginx"
     port        = 80
-    target_port = 30088
+    target_port = 30080
     external_address_spec {
       ip_version = "ipv4"
     }
@@ -27,7 +27,7 @@ resource "yandex_lb_network_load_balancer" "k8s_lb" {
   listener {
     name        = "grafana-web"
     port        = 3000
-    target_port = 40000
+    target_port = 30090
     external_address_spec {
       ip_version = "ipv4"
     }
