@@ -123,15 +123,15 @@
 
 Добавляю проект в GitHuB
 
-git init
-git add service-account-bucket/*.tf
-git add service-account-bucket/*.sh
-git add service-account-bucket/outputs.tf
-git rm --cached service-account-bucket/.gitignore 2>/dev/null
-git commit -m "Добавлены конфиги Terraform и скрипты"
-git branch -M main
-git remote add origin git@github.com:sharvik22/diplom.git
-git push -u origin main
+- git init
+- git add service-account-bucket/*.tf
+- git add service-account-bucket/*.sh
+- git add service-account-bucket/outputs.tf
+- git rm --cached service-account-bucket/.gitignore 2>/dev/null
+- git commit -m "Добавлены конфиги Terraform и скрипты"
+- git branch -M main
+- git remote add origin git@github.com:sharvik22/diplom.git
+- git push -u origin main
 
 ---
 
