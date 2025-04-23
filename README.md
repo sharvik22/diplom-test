@@ -134,18 +134,6 @@
 
 ![image](https://github.com/user-attachments/assets/1cd01a6d-8064-4df5-ad1c-7a91adb6f492)
 
-Добавляю проект в GitHuB
-
-- git init
-- git add service-account-bucket/*.tf
-- git add service-account-bucket/*.sh
-- git add service-account-bucket/outputs.tf
-- git rm --cached service-account-bucket/.gitignore 2>/dev/null
-- git commit -m "Добавлены конфиги Terraform и скрипты"
-- git branch -M main
-- git remote add origin git@github.com:sharvik22/diplom.git
-- git push -u origin main
-
 ---
 
 ### 2. `Создание Kubernetes кластера`
@@ -291,20 +279,6 @@ ssh -f -N -M -S /tmp/kubernetes-tunnel -L 6443:127.0.0.1:6443 ubuntu@84.252.131.
 Подключение к master
 
 ![image](https://github.com/user-attachments/assets/80f20635-c898-4c4a-918e-4666a8501390)
-
-
-
-Добавляю проект в GitHuB
-
-git init
-git add main-infrastructure/*.tf
-git add main-infrastructure/*.sh
-git add main-infrastructure/outputs.tf
-git rm --cached main-infrastructure/.gitignore 2>/dev/null
-git commit -m "Добавлены конфиги Terraform и скрипты"
-git branch -M main
-git remote add origin git@github.com:sharvik22/diplom.git
-git push -u origin main
 
 ---
 
