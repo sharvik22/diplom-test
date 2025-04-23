@@ -161,19 +161,23 @@
 ### `Решение`
 *********************************************************
 
-Кластер разварачиваю через Kubespray. Подготовил и настроил ВМ все необходимые компоненты для ansible и Kubespray.
+Кластер разварачиваю через Kubespray. Подготовил и настроил ВМ на которой всё необходимые компоненты для ansible и Kubespray.
 
-Клонировал репозиторий
-- git clone https://github.com/kubernetes-sigs/kubespray.git
+* добавил ключ ssh для подключения.
+* установил sudo apt install python3-pip
+* Клонировал репозиторий  git clone https://github.com/netology-code/ter-homeworks.git
+* установил зависимости sudo pip install -r requirements.txt --break-system-packages --ignore-installed
+* скопировал инвентори cp -rfp inventory/sample inventory/mycluster
 
-установил необходимых зависимостей
-- sudo pip install -r requirements.txt --break-system-packages --ignore-installed
+* установил Helm на локальную машину
+* curl https://baltocdn.com/helm/signing.asc | sudo apt-key add -
+* sudo apt-get install apt-transport-https --yes
+* echo "deb https://baltocdn.com/helm/stable/debian/ all main" | sudo tee /etc/apt/sources.list.d/helm-stable-debian.list
+* sudo apt-get update
+* sudo apt-get install helm
+* helm version
 
-- cd kubespray
-- cp -rfp inventory/sample inventory/mycluster
-- nano inventory/mycluster/inventory.ini
-
-Установка дополнительных компонентов
+* установка дополнительных компонентов
 - nano inventory/mycluster/group_vars/k8s_cluster/addons.yml
 
 # Мониторинг
@@ -188,7 +192,6 @@
 # Ingress контроллер
 - ingress_nginx_enabled: true
 
-
 Так же сделал экспорт необходимых переменных для бакета и сервисного аккаунта, которые были созданы в первом проекте
 - export TF_VAR_k8s_security_group_id=""
 - export TF_VAR_service_account_id=""
@@ -196,16 +199,12 @@
 - export YC_S3_ACCESS_KEY=""
 - export YC_S3_SECRET_KEY=""
 
-Так же сервисного аккаунта создаю  ключ авторизации в формате json через yandex. 
+Для сервисного аккаунта создаю  ключ авторизации в формате json через yandex. 
 
 
 Структура проекта:
 
 ![image](https://github.com/user-attachments/assets/c9151889-642a-4f6f-bd86-399dc99bfe61)
-
-* 
-
-
 
 
 После выполнения terraform apply.
@@ -213,9 +212,34 @@
 ![image](https://github.com/user-attachments/assets/943278c0-a13f-44ad-9308-c8c761b5f903)
 
 
-Так же запускаю скрипт для хранения стейт файла второго проекта
+Так же запускаю скрипт init-backend.sh для хранения стейт файла второго проекта.
 
 ![image](https://github.com/user-attachments/assets/ba4389e8-6c4c-4e52-8a7e-1e303d890999)
+
+
+У меня создалось все необходимое для создания кластера.
+
+![image](https://github.com/user-attachments/assets/40cdd1d9-f896-4fb9-a6af-44a87aa93814)
+
+
+Настроил инвентори (вывод outputs.tf) ввел в инвентори данные об ip мастера и ворк нод.
+
+![image](https://github.com/user-attachments/assets/339f4877-9a76-4a3a-9feb-ab4aad6e5823)
+
+
+Произвел проверку доступности
+
+* ansible -i inventory/mycluster/inventory.ini all -m ping --become
+
+![image](https://github.com/user-attachments/assets/6ca3ac46-b08f-4fba-9231-e07f72e8b1eb)
+
+
+Запустил создание кластера
+
+* ansible-playbook -i inventory/mycluster/inventory.ini --become --become-user=root --user=ubuntu cluster.yml -vvv
+
+Итог:
+
 
 
 
