@@ -95,9 +95,11 @@
 
 
 
-После выполнения terraform apply у меня появились: 
+После выполнения terraform apply. 
 
 ![image](https://github.com/user-attachments/assets/ebdd608d-5648-436d-a568-e535d3e8ac2f)
+
+![image](https://github.com/user-attachments/assets/97568afd-d857-41ec-a583-74a05f6f5d69)
 
 ![image](https://github.com/user-attachments/assets/c535e99d-cc41-4f1d-b24e-c9bd11ac7353)
 
