@@ -311,21 +311,22 @@ ssh -f -N -M -S /tmp/kubernetes-tunnel -L 6443:127.0.0.1:6443 ubuntu@84.252.131.
 
 ![image](https://github.com/user-attachments/assets/c2aa63c7-c328-41fe-94a6-145c45a01a2e)
 
+
  * Экспортировал переменную.
 
  export TF_VAR_dockerhub_token=""
 
 
-* Создал Git репозиторий, настроил ssh авторизацию	(nginx-app).
+* Создал Git репозиторий, настроил ssh авторизацию (nginx-app).
 												
 * Клонировал репозиторий.
  
 git clone https://github.com/sharvik22/nginx-app.git
 
-
 * Создал структуру для nginx с конфигом.
 
 ![image](https://github.com/user-attachments/assets/c0327094-f8db-421f-9490-4a2830f75685)
+
 
 * Произвел сборку образ
 
@@ -348,15 +349,23 @@ docker build -t sharvik40/nginx-app:latest .
 
 * Деплой в github
 
-- git init
-- git add .
-- git rm --cached .gitignore 2>/dev/null
-- git rm --cached *.sh 2>/dev/null
-- git status
-- git commit -m 'nginx-app'
-- git branch -M main
-- git remote add origin git@github.com:sharvik22/nginx-app.git
-- git push -f origin main
+git init
+
+git add .
+
+git rm --cached .gitignore 2>/dev/null
+
+git rm --cached *.sh 2>/dev/null
+
+git status
+
+git commit -m 'nginx-app'
+
+git branch -M main
+
+git remote add origin git@github.com:sharvik22/nginx-app.git
+
+git push -f origin main
 
 
 
