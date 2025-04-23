@@ -260,17 +260,31 @@
 ![image](https://github.com/user-attachments/assets/e08227de-dc30-49f1-9222-e1b5c5ac79bd)
 
 
+Далее настроиваю подключение к кластеру.
+
+Установка и настройка kubectl. 
+
+* curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+* chmod +x kubectl
+* sudo mv kubectl /usr/local/bin/
+
+На ВМ ansible.
+
+* mkdir -p ~/.kube
+* ssh ubuntu@84.252.131.153 "sudo cat /etc/kubernetes/admin.conf" > ~/.kube/config
+* chmod 600 ~/.kube/config
+* nano ~/.kube/config
 
 
+Настроил SSH-туннеля для доступа к Kubernetes API.
 
-
-
-
-
+Фоновый режим (с автоподключением).
+ssh -f -N -M -S /tmp/kubernetes-tunnel -L 6443:127.0.0.1:6443 ubuntu@84.252.131.153
 
 
 `Ожидаемые результаты:`
 
+![image](https://github.com/user-attachments/assets/516b23ce-5428-446e-a16c-4ed44522a008)
 
 ---
 
