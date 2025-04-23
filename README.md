@@ -463,8 +463,12 @@ kubectl -n monitoring get secrets kube-prometheus-grafana -o jsonpath="{.data.ad
 
 Данные для входа:
 
-'Логин: admin'
+Логин: admin
+
 Пароль: prom-operator
+
+![image](https://github.com/user-attachments/assets/838aaadf-bbb8-4a35-a60a-ceaf351750d3)
+
 
 
 # Деплоить тестового приложение.
@@ -538,13 +542,47 @@ kubectl get service nginx-app-service
 
 ### `Решение`
 
+* Создал файл для работы с yandex actions
+
+mkdir -p .github/workflows
+
+nano .github/workflows/cidi.yml
+
+
+* настраиваю секреты в yandex actions
+
+![image](https://github.com/user-attachments/assets/627fe63a-3c0a-429a-adda-b219058f23b5)
+
 
 `Ожидаемые результаты:`
 
+'Делаю коммит'
+
+![image](https://github.com/user-attachments/assets/fa53618b-5765-4105-84a8-f6f24ba7a8ee)
+
+![image](https://github.com/user-attachments/assets/ce45d428-6a80-445d-8922-6b6e7146ffd4)
+
+![image](https://github.com/user-attachments/assets/d30788b7-4da9-4672-8712-395940638aca)
+
+
+'Делаю тег'
+
+![image](https://github.com/user-attachments/assets/0692c90e-5da7-40b6-a5c5-1683cc5e869c)
+
+![image](https://github.com/user-attachments/assets/fee4586f-86ab-4dcb-b1d4-019062c9301a)
+
+![image](https://github.com/user-attachments/assets/91ab8911-3b9e-4ee7-b78f-eeb35c346975)
+
+![image](https://github.com/user-attachments/assets/04185bb2-bd5f-4403-95e6-91858e945086)
+
+![image](https://github.com/user-attachments/assets/e13391ec-917f-48d1-8f1c-0736a0467100)
+
+
+Проверим, какой образ сейчас развёрнут.
+
+![image](https://github.com/user-attachments/assets/e2d492e3-7e5c-4534-849a-028ed128d88a)
 
 ---
-
-
 
 ## Что необходимо для сдачи задания?
 
