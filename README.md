@@ -164,14 +164,14 @@
 - git clone https://github.com/kubernetes-sigs/kubespray.git
 
 установил необходимых зависимостей
--sudo pip install -r requirements.txt --break-system-packages --ignore-installed
+- sudo pip install -r requirements.txt --break-system-packages --ignore-installed
 
 - cd kubespray
--cp -rfp inventory/sample inventory/mycluster
+- cp -rfp inventory/sample inventory/mycluster
 - nano inventory/mycluster/inventory.ini
 
 Установка дополнительных компонентов
--nano inventory/mycluster/group_vars/k8s_cluster/addons.yml
+- nano inventory/mycluster/group_vars/k8s_cluster/addons.yml
 
 # Мониторинг
 - helm_enabled: true
