@@ -50,11 +50,12 @@
 
 * export TF_VAR_yc_token=""
 * export TF_VAR_cloud_id=""
+* export TF_VAR_folder_id=""
+* export TF_VAR_ssh_public_key=""
 
-export TF_VAR_folder_id=""
+Структура выглядит следующим образом:
 
-export TF_VAR_ssh_public_key=""
-
+![image](https://github.com/user-attachments/assets/d36b67dc-a933-405e-9244-8ef76f45e878)
 
 
 
