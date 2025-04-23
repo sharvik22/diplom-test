@@ -58,7 +58,13 @@
 ![image](https://github.com/user-attachments/assets/d36b67dc-a933-405e-9244-8ef76f45e878)
 
 
+В каждый проект добавил файл .gitignore.
 
+# service-account-bucket
+ - создает бакет
+ - сервисный аккаунт
+ - сеть
+ - секюрити групп 
 
 
 ### При создании аккаунта надо создать новый authorized_key.json для CI/CD yandex Actions
