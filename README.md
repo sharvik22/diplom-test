@@ -413,6 +413,47 @@ git push -f origin main
 
 ### `Решение`
 
+kubectl create namespace monitoring  
+
+helm install kube-prometheus prometheus-community/kube-prometheus-stack \
+  --namespace monitoring \
+  --set grafana.service.type=NodePort \
+  --set grafana.service.nodePort=30090 \
+  --set prometheus.service.type=NodePort \
+  --set prometheus.service.nodePort=30091 \
+  --set alertmanager.service.type=NodePort \
+  --set alertmanager.service.nodePort=30092
+
+
+Я использовал балансировщик Network Load Balancer и NodePort
+т.к. кластре у меня в локальной сети и не имеет публичного IP, я сделал проброс портов приложения и Grafana
+
+Проверка установки:
+
+# Проверить сервисы
+kubectl get svc -n monitoring
+
+# Проверить поды
+kubectl get pods -n monitoring
+
+kubectl get nodes
+kubectl get pods --all-namespaces
+  
+Проверка установки (локально или на master-ноде)
+kubectl get pods -n monitoring --watch
+
+ждем когда поднимуться поды.........
+
+Получение пароля Grafana
+kubectl -n monitoring get secrets kube-prometheus-grafana -o jsonpath="{.data.admin-password}" | base64 -d ; echo
+
+открыть адрес балансировщика  и залогинеться
+http://158.160.178.92:3000/login  
+
+
+admin
+prom-operator
+
 
 `Ожидаемые результаты:`
 
