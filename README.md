@@ -115,11 +115,14 @@
 
 `Ожидаемые результаты:`
 
-При выполнении `terraform destroy` будет возникать ошибка: 
-Вы пытаетесь удалить бакет terraform-busket, но он не пустой. Yandex Cloud не позволяет удалить бакет, если в нём есть файлы.
+При выполнении `terraform destroy` будет возникать ошибка: "Вы пытаетесь удалить бакет terraform-busket, но он не пустой. Yandex Cloud не позволяет удалить бакет, если в нём есть файлы."
 
-`Решение:` зайти YC и вручную удалить бакет. 
 
+`Решение:` 
+* terraform init -migrate-state
+* terraform destroy
+
+![image](https://github.com/user-attachments/assets/1cd01a6d-8064-4df5-ad1c-7a91adb6f492)
 
 Добавляю проект в GitHuB
 
