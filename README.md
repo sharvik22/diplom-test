@@ -279,12 +279,32 @@
 Настроил SSH-туннеля для доступа к Kubernetes API.
 
 Фоновый режим (с автоподключением).
+
 ssh -f -N -M -S /tmp/kubernetes-tunnel -L 6443:127.0.0.1:6443 ubuntu@84.252.131.153
 
 
 `Ожидаемые результаты:`
 
 ![image](https://github.com/user-attachments/assets/516b23ce-5428-446e-a16c-4ed44522a008)
+
+
+Подключение к master
+
+![image](https://github.com/user-attachments/assets/80f20635-c898-4c4a-918e-4666a8501390)
+
+
+
+Добавляю проект в GitHuB
+
+git init
+git add main-infrastructure/*.tf
+git add main-infrastructure/*.sh
+git add main-infrastructure/outputs.tf
+git rm --cached main-infrastructure/.gitignore 2>/dev/null
+git commit -m "Добавлены конфиги Terraform и скрипты"
+git branch -M main
+git remote add origin git@github.com:sharvik22/diplom.git
+git push -u origin main
 
 ---
 
