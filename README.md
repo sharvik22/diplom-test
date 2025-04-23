@@ -327,17 +327,36 @@ git clone https://github.com/sharvik22/nginx-app.git
 
 ![image](https://github.com/user-attachments/assets/c0327094-f8db-421f-9490-4a2830f75685)
 
-* Задеплоил в github
+* Произвел сборку образ
 
-* git init
-* git add .
-* git rm --cached .gitignore 2>/dev/null
-* git rm --cached *.sh 2>/dev/null
-* git status
-* git commit -m 'nginx-app'
-* git branch -M main
-* git remote add origin git@github.com:sharvik22/nginx-app.git
-* git push -f origin main
+docker build -t sharvik40/nginx-app:latest .
+
+![image](https://github.com/user-attachments/assets/d54242bc-731b-463e-92b7-da2ff3802cfd)
+
+![image](https://github.com/user-attachments/assets/4e6ed87d-0829-4374-92c2-7774a99b4c0e)
+
+
+* Делаю деплой образа в DockerHub.
+
+![image](https://github.com/user-attachments/assets/fc9243ba-21db-4678-a615-b32f5d9cdd20)
+
+
+* Проверяю на DockerHub.
+
+![image](https://github.com/user-attachments/assets/4067be79-101f-4761-a6b8-89e2ea777eeb)
+
+
+* Деплой в github
+
+- git init
+- git add .
+- git rm --cached .gitignore 2>/dev/null
+- git rm --cached *.sh 2>/dev/null
+- git status
+- git commit -m 'nginx-app'
+- git branch -M main
+- git remote add origin git@github.com:sharvik22/nginx-app.git
+- git push -f origin main
 
 
 
