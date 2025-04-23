@@ -161,7 +161,7 @@
 ### `Решение`
 *********************************************************
 
-Кластер я разварачиваю через Kubespray. Подготовил и настроил ВМ все необходимые компоненты для ansible и Kubespray.
+Кластер разварачиваю через Kubespray. Подготовил и настроил ВМ все необходимые компоненты для ansible и Kubespray.
 
 Клонировал репозиторий
 - git clone https://github.com/kubernetes-sigs/kubespray.git
@@ -189,15 +189,33 @@
 - ingress_nginx_enabled: true
 
 
-Так же сделал экспорт необходимых переменных для бакета и сервисного аккаунта
+Так же сделал экспорт необходимых переменных для бакета и сервисного аккаунта, которые были созданы в первом проекте
 - export TF_VAR_k8s_security_group_id=""
 - export TF_VAR_service_account_id=""
 - export YC_S3_BUCKET_NAME=""
 - export YC_S3_ACCESS_KEY=""
 - export YC_S3_SECRET_KEY=""
 
+Так же сервисного аккаунта создаю  ключ авторизации в формате json через yandex. 
 
 
+Структура проекта:
+
+![image](https://github.com/user-attachments/assets/c9151889-642a-4f6f-bd86-399dc99bfe61)
+
+* 
+
+
+
+
+После выполнения terraform apply.
+
+![image](https://github.com/user-attachments/assets/943278c0-a13f-44ad-9308-c8c761b5f903)
+
+
+Так же запускаю скрипт для хранения стейт файла второго проекта
+
+![image](https://github.com/user-attachments/assets/ba4389e8-6c4c-4e52-8a7e-1e303d890999)
 
 
 
