@@ -347,6 +347,15 @@ docker build -t sharvik40/nginx-app:latest .
 ![image](https://github.com/user-attachments/assets/4067be79-101f-4761-a6b8-89e2ea777eeb)
 
 
+* Дополнительная проверка. Удаляю образ и заново скачиваю с DockerHub. Запускаю контейнер локально.
+
+
+![image](https://github.com/user-attachments/assets/ff5dc312-b6df-412e-8473-1b37efabd1eb)
+   
+![image](https://github.com/user-attachments/assets/0f8f7f5c-2ba0-4ef9-a3ad-e6314c12607e)
+
+![image](https://github.com/user-attachments/assets/b826fc56-125a-4ca2-b88e-e90534b76a2f)
+
 * Деплой в github
 
 git init
