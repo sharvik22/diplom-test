@@ -377,13 +377,14 @@ git remote add origin git@github.com:sharvik22/nginx-app.git
 git push -f origin main
 
 
-`Ожидаемые результаты:`
+### `Ожидаемые результаты:`
 
-1. Git репозиторий с тестовым приложением и Dockerfile.
+* Git репозиторий с тестовым приложением и Dockerfile.
 
 # [git@github.com:sharvik22/nginx-app.git](https://github.com/sharvik22/nginx-app.git)
 
-3. Регистри с собранным docker image. В качестве регистри может быть DockerHub или [Yandex Container Registry](https://cloud.yandex.ru/services/container-registry), созданный также с помощью terraform.
+
+* Регистри с собранным docker image. В качестве регистри может быть DockerHub или [Yandex Container Registry](https://cloud.yandex.ru/services/container-registry), созданный также с помощью terraform.
 
 ![image](https://github.com/user-attachments/assets/68ebdb5a-4813-4a87-a730-4abf03011221)
 
