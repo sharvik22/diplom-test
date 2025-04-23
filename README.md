@@ -234,28 +234,30 @@
 ![image](https://github.com/user-attachments/assets/ba4389e8-6c4c-4e52-8a7e-1e303d890999)
 
 
-У меня создалось все необходимое для создания кластера.
+Все необходимые компоненты для создания кластера успешно развернуты.
 
 ![image](https://github.com/user-attachments/assets/40cdd1d9-f896-4fb9-a6af-44a87aa93814)
 
 
-Настроил inventory (вывод outputs.tf), ввел данные об ip master и worker.
+Настроил inventory (вывод outputs.tf), ввел данные ip master и workers.
 
 ![image](https://github.com/user-attachments/assets/339f4877-9a76-4a3a-9feb-ab4aad6e5823)
 
 
-Произвел проверку доступности
+Произвел проверку доступности.
 
 * ansible -i inventory/mycluster/inventory.ini all -m ping --become
 
 ![image](https://github.com/user-attachments/assets/6ca3ac46-b08f-4fba-9231-e07f72e8b1eb)
 
 
-Запустил создание кластера
+Запустил создание кластера.
 
 * ansible-playbook -i inventory/mycluster/inventory.ini --become --become-user=root --user=ubuntu cluster.yml -vvv
 
 # Итог:
+
+![image](https://github.com/user-attachments/assets/e08227de-dc30-49f1-9222-e1b5c5ac79bd)
 
 
 
