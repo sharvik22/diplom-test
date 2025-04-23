@@ -75,8 +75,15 @@
 ![image](https://github.com/user-attachments/assets/4f98310c-e2b3-4d76-971a-7c93b44def25)
 
 * terraform init
+
+![image](https://github.com/user-attachments/assets/b140fec9-fc64-4839-a0fe-8c03cf501fb7)
+
 * terraform plan
+
+![image](https://github.com/user-attachments/assets/209ce3e5-ecc7-42e4-8f9d-3d5077a7dd62)
+
 * terraform apply
+
 
 У меня есть два скрипта
 
@@ -87,13 +94,28 @@
   Скрипт передает ключи из вывода, сохраняет их во временный файл, выводит мне для проверки и кэспорта переменные и удаляет файл в которых есть сектретные ключи.
 
 
+После выполнения terraform apply у меня появились: 
+
+![image](https://github.com/user-attachments/assets/ebdd608d-5648-436d-a568-e535d3e8ac2f)
+
+![image](https://github.com/user-attachments/assets/c535e99d-cc41-4f1d-b24e-c9bd11ac7353)
+
+
+Далее запускаю скрипты:
+
+![image](https://github.com/user-attachments/assets/814605de-857f-43cd-bca7-a0bdb98892fe)
+
+![image](https://github.com/user-attachments/assets/6552fd4b-16fc-4b92-8011-a0da9c2bb308)
+
+![image](https://github.com/user-attachments/assets/87b9155b-e0c0-46bc-9e43-bb27927275f8)
+
 
 `Ожидаемые результаты:`
 
 При выполнении `terraform destroy` будет возникать ошибка: 
 Вы пытаетесь удалить бакет terraform-busket, но он не пустой. Yandex Cloud не позволяет удалить бакет, если в нём есть файлы.
 
-`Решение:` зайти YC и вручную удалить 
+`Решение:` зайти YC и вручную удалить бакет. 
 
 ---
 
