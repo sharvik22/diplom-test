@@ -187,7 +187,6 @@
 
 
 Так же сделал экспорт необходимых переменных для бакета и сервисного аккаунта
-
 - export TF_VAR_k8s_security_group_id=""
 - export TF_VAR_service_account_id=""
 - export YC_S3_BUCKET_NAME=""
