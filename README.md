@@ -161,7 +161,7 @@
 ### `Решение`
 *********************************************************
 
-Кластер разварачиваю через Kubespray. Подготовил и настроил ВМ, на которой всё необходимые компоненты для ansible и Kubespray.
+Кластер разворачиваю через Kubespray. Подготовил и настроил ВМ, на которой установил необходимые компоненты для ansible и Kubespray.
 
 * добавил ключ ssh для подключения.
 * установил sudo apt install python3-pip
@@ -192,7 +192,7 @@
 # Ingress контроллер
 - ingress_nginx_enabled: true
 
-Так же сделал экспорт необходимых переменных для бакета и сервисного аккаунта, которые были созданы в первом проекте
+Так же сделал экспорт необходимых переменных для бакета и сервисного аккаунта, которые были созданы в первом проекте.
 - export TF_VAR_k8s_security_group_id=""
 - export TF_VAR_service_account_id=""
 - export YC_S3_BUCKET_NAME=""
@@ -205,6 +205,12 @@
 Структура проекта:
 
 ![image](https://github.com/user-attachments/assets/c9151889-642a-4f6f-bd86-399dc99bfe61)
+
+
+# main-infrastructure
+ - хранение стейт файла проекта;
+ - создание трех ВМ для кластера;
+ - создание Network Load Balancer;
 
 
 После выполнения terraform apply.
@@ -222,7 +228,7 @@
 ![image](https://github.com/user-attachments/assets/40cdd1d9-f896-4fb9-a6af-44a87aa93814)
 
 
-Настроил инвентори (вывод outputs.tf) ввел в инвентори данные об ip мастера и ворк нод.
+Настроил inventory (вывод outputs.tf), ввел данные об ip master и worker.
 
 ![image](https://github.com/user-attachments/assets/339f4877-9a76-4a3a-9feb-ab4aad6e5823)
 
@@ -238,7 +244,8 @@
 
 * ansible-playbook -i inventory/mycluster/inventory.ini --become --become-user=root --user=ubuntu cluster.yml -vvv
 
-Итог:
+# Итог:
+
 
 
 
