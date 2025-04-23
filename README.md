@@ -48,10 +48,12 @@
 
 Сделал экспорт необходимых переменных:
 
-export TF_VAR_yc_token="y0__xCrtai1BhjB3RMgw6D_kRLkvbL06g_BP0APHxh0iMLN5_gMuQ"
-export TF_VAR_cloud_id="b1g811k1u7vur9c50o56"
-export TF_VAR_folder_id="b1guevbvpqmirfgfolig"
-export TF_VAR_ssh_public_key="ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIGtGgCucF4rB9fJftdS3o6muoClGVjxpTDxhoY3AEkCI root@terraform"
+* export TF_VAR_yc_token=""
+* export TF_VAR_cloud_id=""
+
+export TF_VAR_folder_id=""
+
+export TF_VAR_ssh_public_key=""
 
 
 
