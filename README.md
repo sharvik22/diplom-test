@@ -413,7 +413,10 @@ git push -f origin main
 
 ### `Решение`
 
-kubectl create namespace monitoring  
+* Создаю namespace
+kubectl create namespace monitoring
+
+* С помощью helm произожу установку.
 
 helm install kube-prometheus prometheus-community/kube-prometheus-stack \
   --namespace monitoring \
@@ -424,38 +427,94 @@ helm install kube-prometheus prometheus-community/kube-prometheus-stack \
   --set alertmanager.service.type=NodePort \
   --set alertmanager.service.nodePort=30092
 
+![image](https://github.com/user-attachments/assets/b302d776-5ca0-42c6-9ec0-065a9d4bea5a)
 
-Я использовал балансировщик Network Load Balancer и NodePort
-т.к. кластре у меня в локальной сети и не имеет публичного IP, я сделал проброс портов приложения и Grafana
+
+Я использовал балансировщик Network Load Balancer и NodePort т.к. кластер у меня в локальной сети и не имеет публичного IP, я сделал проброс портов приложения и Grafana
 
 Проверка установки:
 
-# Проверить сервисы
+### Проверить сервисы
+
 kubectl get svc -n monitoring
 
-# Проверить поды
+![image](https://github.com/user-attachments/assets/0faea3f9-5d4b-494e-94b7-a92fe27693bb)
+
+
+### Проверить поды
+
 kubectl get pods -n monitoring
+
+![image](https://github.com/user-attachments/assets/35cdb94b-654e-40a7-98af-35df15575149)
+
 
 kubectl get nodes
 kubectl get pods --all-namespaces
-  
-Проверка установки (локально или на master-ноде)
-kubectl get pods -n monitoring --watch
 
-ждем когда поднимуться поды.........
+![image](https://github.com/user-attachments/assets/e5741564-dd1a-4aa5-acb0-3249f90db6ab)
 
 Получение пароля Grafana
 kubectl -n monitoring get secrets kube-prometheus-grafana -o jsonpath="{.data.admin-password}" | base64 -d ; echo
 
-открыть адрес балансировщика  и залогинеться
-http://158.160.178.92:3000/login  
+![image](https://github.com/user-attachments/assets/a9625997-dccf-400b-bd07-8cf4ff3314a6)
+
+Открываем адрес балансировщика и логинемся.
+
+### http://158.160.164.63:3000/login  
+
+Данные для входа:
+
+Логин: admin
+Пароль: prom-operator
 
 
-admin
-prom-operator
+# Деплоить тестового приложение.
+
+* Создаю Deployment (nginx-app-deployment.yaml)
+* Создаю Service (nginx-app-service.yaml)
+
+Применяю конфигурацию.
+
+* kubectl apply -f nginx-app-deployment.yaml
+* kubectl apply -f nginx-app-service.yaml
+
+![image](https://github.com/user-attachments/assets/ee8a6f33-eb44-4cc5-8a84-d17c03a998bd)
+
+
+Проверка:
+
+kubectl get deployment nginx-app-deployment
+
+![image](https://github.com/user-attachments/assets/7169b6aa-c5b8-4cc4-84e1-1960eb03926d)
+
+Проверить поды (должны быть в состоянии Running)
+
+kubectl get pods -l app=nginx-app
+
+![image](https://github.com/user-attachments/assets/023a75b8-5888-4394-b1a6-f47667022716)
+
+
+Проверить сервис (должен показать 30080 в NodePort)
+
+kubectl get service nginx-app-service
+
+![image](https://github.com/user-attachments/assets/716d2941-2728-43c6-af96-ae45de82181d)
+
+
+Проверка балансировщика: 
+
+![image](https://github.com/user-attachments/assets/7c66c552-c4e6-41b4-a026-8aa979303d1f)
+
+
+Тестовое приложение доступно:
+
+### [http://51.250.43.141](http://158.160.164.63/)
+
+![image](https://github.com/user-attachments/assets/282283f9-d0f8-4f95-9327-a6a2809530e3)
 
 
 `Ожидаемые результаты:`
+
 
 
 ---
