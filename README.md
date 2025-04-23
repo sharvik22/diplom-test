@@ -243,7 +243,7 @@
 
 * ansible-playbook -i inventory/mycluster/inventory.ini --become --become-user=root --user=ubuntu cluster.yml -vvv
 
-# Итог:
+### Итог:
 
 ![image](https://github.com/user-attachments/assets/e08227de-dc30-49f1-9222-e1b5c5ac79bd)
 
