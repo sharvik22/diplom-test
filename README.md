@@ -53,7 +53,7 @@
 * export TF_VAR_folder_id=""
 * export TF_VAR_ssh_public_key=""
 
-Структура выглядит следующим образом:
+Структура проекта выглядит следующим образом:
 
 ![image](https://github.com/user-attachments/assets/d36b67dc-a933-405e-9244-8ef76f45e878)
 
