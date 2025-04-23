@@ -157,99 +157,51 @@
 
 ### `Решение`
 *********************************************************
-Клонировать репозиторий
-git clone https://github.com/kubernetes-sigs/kubespray.git
-cd kubespray
-cp -rfp inventory/sample inventory/mycluster
-nano inventory/mycluster/inventory.ini
 
-Версия V
-nano inventory/mycluster/group_vars/all/all.yml
+Кластер я разварачиваю через Kubespray. Подготовил и настроил ВМ все необходимые компоненты для ansible и Kubespray.
+
+Клонировал репозиторий
+- git clone https://github.com/kubernetes-sigs/kubespray.git
+
+установил необходимых зависимостей
+-sudo pip install -r requirements.txt --break-system-packages --ignore-installed
+
+- cd kubespray
+-cp -rfp inventory/sample inventory/mycluster
+- nano inventory/mycluster/inventory.ini
 
 Установка дополнительных компонентов
-nano inventory/mycluster/group_vars/k8s_cluster/addons.yml
+-nano inventory/mycluster/group_vars/k8s_cluster/addons.yml
 
 # Мониторинг
-helm_enabled: true
-metrics_server_enabled: true
-dashboard_enabled: true
+- helm_enabled: true
+- metrics_server_enabled: true
+- dashboard_enabled: true
 
 # Логирование
-efk_enabled: false
-elasticsearch_enabled: false
+- efk_enabled: false
+- elasticsearch_enabled: false
 
 # Ingress контроллер
-ingress_nginx_enabled: true
+- ingress_nginx_enabled: true
 
 
-пинг
-ansible -i inventory/mycluster/inventory.ini all -m ping --become
+Так же сделал экспорт необходимых переменных для бакета и сервисного аккаунта
 
-Запуск
-ansible-playbook -i inventory/mycluster/inventory.ini --become --become-user=root --user=ubuntu cluster.yml
-ansible-playbook -i inventory/mycluster/inventory.ini --become --become-user=root --user=ubuntu cluster.yml -vvv
-
-worker1
-ssh -l ubuntu 84.252.136.185
-master
-ssh -l ubuntu 51.250.79.130
-worker2
-ssh -l ubuntu 158.160.156.120
-
-Важно вручную если что
-sudo hostnamectl set-hostname master
-sudo hostnamectl set-hostname worker1
-sudo hostnamectl set-hostname worker2
-
-sudo mkdir -p /etc/bash_completion.d
-sudo chmod 755 /etc/bash_completion.d
-
-nano /etc/sudoers
-ubuntu  ALL=(ALL:ALL) NOPASSWD: ALL
-
-nano inventory/mycluster/group_vars/k8s_cluster/k8s-cluster.yml
-
-systemctl status systemd-hostnamed
-sudo systemctl start systemd-hostnamed
-
-
-Проверка
-master
-ssh -l ubuntu 158.160.101.52
-sudo su
-kubectl get nodes
-nano ~/.kube/config
-kubectl get pods --all-namespaces
-
-ssh ubuntu@158.160.108.186 sudo -n whoami
-
-Настройка поделючения к кластеру
-
-Установка и настройка kubectl на ВМ terraform
-curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
-chmod +x kubectl
-sudo mv kubectl /usr/local/bin/
-
-
-mkdir -p ~/.kube
-ssh ubuntu@158.160.108.186 "sudo cat /etc/kubernetes/admin.conf" > ~/.kube/config
-chmod 600 ~/.kube/config
-
-
-руководство по настройке SSH-туннеля для доступа к Kubernetes API
-Однократное подключение
-ssh -N -L 6443:localhost:6443 ubuntu@158.160.108.186
-
-Фоновый режим (с автоподключением)
-ssh -f -N -M -S /tmp/kubernetes-tunnel -L 6443:localhost:6443 ubuntu@158.160.108.186
-ssh -f -N -M -S /tmp/kubernetes-tunnel -L 6443:127.0.0.1:6443 ubuntu@158.160.108.186
-
-Для закрытия туннеля:
-ssh -S /tmp/kubernetes-tunnel -O exit root@158.160.108.186
+- export TF_VAR_k8s_security_group_id=""
+- export TF_VAR_service_account_id=""
+- export YC_S3_BUCKET_NAME=""
+- export YC_S3_ACCESS_KEY=""
+- export YC_S3_SECRET_KEY=""
 
 
 
-kubectl get nodes
+
+
+
+
+
+
 
 
 `Ожидаемые результаты:`
