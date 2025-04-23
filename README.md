@@ -447,13 +447,12 @@ kubectl get pods -n monitoring
 
 ![image](https://github.com/user-attachments/assets/35cdb94b-654e-40a7-98af-35df15575149)
 
-
 kubectl get nodes
 kubectl get pods --all-namespaces
 
 ![image](https://github.com/user-attachments/assets/e5741564-dd1a-4aa5-acb0-3249f90db6ab)
 
-Получение пароля Grafana
+### Получение пароля Grafana
 kubectl -n monitoring get secrets kube-prometheus-grafana -o jsonpath="{.data.admin-password}" | base64 -d ; echo
 
 ![image](https://github.com/user-attachments/assets/a9625997-dccf-400b-bd07-8cf4ff3314a6)
@@ -464,7 +463,7 @@ kubectl -n monitoring get secrets kube-prometheus-grafana -o jsonpath="{.data.ad
 
 Данные для входа:
 
-Логин: admin
+'Логин: admin'
 Пароль: prom-operator
 
 
