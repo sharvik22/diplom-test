@@ -328,7 +328,7 @@ git clone https://github.com/sharvik22/nginx-app.git
 ![image](https://github.com/user-attachments/assets/c0327094-f8db-421f-9490-4a2830f75685)
 
 
-* Произвел сборку образ
+* Произвел сборку образа.
 
 docker build -t sharvik40/nginx-app:latest .
 
